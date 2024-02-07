@@ -21,6 +21,19 @@ export const S = {
   P: styled.p`
     color: #000;
   `,
+  ErrorMsg: styled.div`
+    width: 80%;
+    padding: 5px 10px 8px 5px;
+    background: #e78895;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto 20px auto;
+
+    p {
+      font-size: 12px;
+      margin: 5px;
+    }
+  `,
   Box: styled.div`
     display: flex;
     flex-direction: column;

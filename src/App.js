@@ -4,9 +4,33 @@ import { S } from "./styled";
 
 function App() {
   const [cookieName, setCookieName] = useState("");
-  const [isCookiePlaced, setIsCookiePlaced] = useState();
+  const [isCookiePlaced, setIsCookiePlaced] = useState(false);
+  const [hasCookieAccess, setHasCookieAccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState();
+
+  const checkForStorageAccess = () => {
+    const isCookieEnabled = navigator.cookieEnabled;
+
+    console.log(10, isCookieEnabled);
+
+    if (!isCookieEnabled) {
+      setErrorMsg("Cookies are not enabled for this site.");
+      return;
+    }
+
+    document.hasStorageAccess().then(
+      function (hasAccess) {
+        console.log(13, hasAccess);
+      },
+      function (failureReason) {
+        console.log(16, failureReason);
+      }
+    );
+  };
 
   const onSubmitCookie = () => {
+    checkForStorageAccess();
+
     if (cookieName && cookieName.length >= 1) {
       setCookie(cookieName);
       setIsCookiePlaced(true);
@@ -23,6 +47,11 @@ function App() {
             prompt a user for Storage Access consent when a cookie is set in an
             embedded, cross-site iframe.
           </S.P>
+          {errorMsg && errorMsg.length > 0 && (
+            <S.ErrorMsg>
+              <S.P>{errorMsg}</S.P>
+            </S.ErrorMsg>
+          )}
           <S.Box>
             <S.TextInput
               type="text"
