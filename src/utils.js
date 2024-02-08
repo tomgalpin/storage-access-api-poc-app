@@ -1,10 +1,11 @@
-export const setCookie = (cookieName) => {
-  const cookieValue = "test-cookie-value";
+export const cookieName = "test-cookie-value";
+
+export const setCookie = (cookieValue) => {
   const date = new Date();
 
   date.setTime(`${date.getTime()}${30 * 24 * 60 * 60 * 1000}`);
 
-  document.cookie = `${cookieValue}=${cookieName}; expires=${date.toUTCString()}; path=/`;
+  document.cookie = `${cookieName}=${cookieValue}; expires=${date.toUTCString()}; path=/`;
 
   console.log("cookies:  ", document.cookie);
 };

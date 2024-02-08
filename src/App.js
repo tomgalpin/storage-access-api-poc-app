@@ -26,7 +26,6 @@ function App() {
   const makeStorageAccessRequest = () => {
     document.requestStorageAccess().then(
       function () {
-        // Storage access was granted.
         console.log("storage access granted");
 
         if (cookieName && cookieName.length >= 1) {
@@ -35,8 +34,9 @@ function App() {
         }
       },
       function () {
-        // Storage access was denied.
         console.log("storage access denied");
+
+        setHasCookieAccess(false);
       }
     );
   };
@@ -52,6 +52,8 @@ function App() {
 
   useEffect(() => {
     const cookies = document.cookie;
+
+    console.log("cookies onload: ", cookies);
 
     if (cookies.length > 0) {
       setCurrentCookies(cookies);
