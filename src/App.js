@@ -41,12 +41,11 @@ function App() {
   const handleCookieAccess = async () => {
     // Adapted from:  https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API/Using
 
-    console.log("document.hasStorageAccess: ", document.hasStorageAccess);
-    console.log("navigator.cookieEnabled: ", navigator.cookieEnabled);
+    console.log("browser: hasStorageAccess: ", document.hasStorageAccess);
+    console.log("browser: cookieEnabled: ", navigator.cookieEnabled);
 
-    if (!document.hasStorageAccess || !navigator.cookieEnabled) {
+    if (!document.hasStorageAccess) {
       // This browser doesn't support the Storage Access API
-      // or user has disabled cookies.
       setHasCookieAccess(false);
       setHasError(true);
     } else {
