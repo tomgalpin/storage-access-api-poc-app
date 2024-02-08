@@ -28,6 +28,9 @@ function App() {
         await document.requestStorageAccess();
         setCookie(cookieValue);
         setCurrentCookies(document.cookie);
+
+        // clear out cookie value to disable submit btn
+        setCookieValue("");
       } catch (err) {
         // If there is an error obtaining storage access.
         console.error(`Error obtaining storage access: ${err}.`);
