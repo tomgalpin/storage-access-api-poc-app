@@ -12,6 +12,8 @@ function App() {
   const onSubmitCookie = async (event) => {
     event.preventDefault();
 
+    handleCookieAccess();
+
     if (hasCookieAccess) {
       setCookie(cookieValue);
       setCurrentCookies(document.cookie);
@@ -77,10 +79,6 @@ function App() {
 
             // setCookie(cookieValue);
             setHasCookieAccess(true);
-          } else if (permission.state === "prompt") {
-            // if "prompt" requestStorageAccess() needs to be called on user interaction
-            // Return state to check on Submit btn click:
-            return permission.state;
           } else if (permission.state === "denied") {
             // User has denied third-party cookie access, so we'll
             // need to do something else
