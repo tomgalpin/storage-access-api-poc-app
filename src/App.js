@@ -18,20 +18,20 @@ function App() {
     } else {
       // Check for Cookie Permissions again
       // in case something changed since last check
-      const hasCookieAccessUpdated = await handleCookieAccess();
+      // const hasCookieAccessUpdated = await handleCookieAccess();
 
-      if (hasCookieAccessUpdated === "prompt") {
-        // Need to call requestStorageAccess() after a user interaction
-        try {
-          await document.requestStorageAccess();
-          setCookie(cookieValue);
-          setCurrentCookies(document.cookie);
-        } catch (err) {
-          // If there is an error obtaining storage access.
-          console.error(`Error obtaining storage access: ${err}.`);
-          setHasCookieAccess(false);
-        }
+      // if (hasCookieAccessUpdated === "prompt") {
+      // Need to call requestStorageAccess() after a user interaction
+      try {
+        await document.requestStorageAccess();
+        setCookie(cookieValue);
+        setCurrentCookies(document.cookie);
+      } catch (err) {
+        // If there is an error obtaining storage access.
+        console.error(`Error obtaining storage access: ${err}.`);
+        setHasCookieAccess(false);
       }
+      // }
     }
 
     // Clear out the input:
@@ -54,9 +54,9 @@ function App() {
     } else {
       setHasError(false);
 
-      const hasAccess = await document.hasStorageAccess();
+      const hasStorageAccess = await document.hasStorageAccess();
 
-      if (hasAccess) {
+      if (hasStorageAccess) {
         // We have access to third-party cookies,
         // setCookie(cookieValue);
         setHasCookieAccess(true);
@@ -91,6 +91,8 @@ function App() {
           }
         } catch (error) {
           console.log("Storage Access query not available.");
+
+          setCookie(cookieValue);
 
           setHasCookieAccess(false);
           setHasError(true);
