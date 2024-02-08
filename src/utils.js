@@ -1,6 +1,5 @@
-export const cookieName = "test-cookie-value";
-
 export const setCookie = (cookieValue) => {
+  const cookieName = "test-cookie-value";
   const date = new Date();
 
   date.setTime(`${date.getTime()}${30 * 24 * 60 * 60 * 1000}`);
@@ -11,6 +10,7 @@ export const setCookie = (cookieValue) => {
 };
 
 export const getCookie = () => {
+  const cookieName = "test-cookie-value";
   let cookieKey = `${cookieName}=`;
 
   let cookieArray = document.cookie.split(";");
