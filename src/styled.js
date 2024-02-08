@@ -23,6 +23,19 @@ export const S = {
     font-size: 16px;
     line-height: 25px;
   `,
+  ErrorMsg: styled.div`
+    width: 80%;
+    padding: 5px 10px 8px 5px;
+    background: rgba(216, 0, 12, 0.6);
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto 20px auto;
+
+    p {
+      font-size: 12px;
+      margin: 5px;
+    }
+  `,
   CookieMsg: styled.div`
     width: 80%;
     padding: 5px 10px 8px 5px;
@@ -45,7 +58,7 @@ export const S = {
     margin-bottom: 20px;
   `,
   Button: styled.button`
-    background-color: #008cba;
+    background-color: rgba(0, 140, 186, 1);
     padding: 20px 20px 25px 20px;
     color: #fff;
     font-size: 20px;
@@ -54,7 +67,7 @@ export const S = {
     border-radius: 5px;
 
     &: hover {
-      background-color: #97d0e3;
+      background-color: rgba(0, 140, 186, 0.8);
     }
 
     &: disabled {
