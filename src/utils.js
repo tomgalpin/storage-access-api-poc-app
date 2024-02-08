@@ -10,8 +10,8 @@ export const setCookie = (cookieValue) => {
   console.log("cookies:  ", document.cookie);
 };
 
-export const getCookie = (cookieKey) => {
-  let cookieName = `${cookieKey}=`;
+export const getCookie = () => {
+  let cookieKey = `${cookieName}=`;
 
   let cookieArray = document.cookie.split(";");
 
@@ -20,8 +20,8 @@ export const getCookie = (cookieKey) => {
       cookie = cookie.substring(1, cookie.length);
     }
 
-    if (cookie.indexOf(cookieName) === 0) {
-      return cookie.substring(cookieName.length, cookie.length);
+    if (cookie.indexOf(cookieKey) === 0) {
+      return cookie.substring(cookieKey.length, cookie.length);
     }
   }
 };
