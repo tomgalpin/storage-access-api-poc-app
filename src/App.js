@@ -102,8 +102,8 @@ function App() {
   useEffect(() => {
     const cookies = document.cookie;
 
-    // // Check for cookie access onload:
-    // handleCookieAccess();
+    // Check for cookie access onload:
+    handleCookieAccess();
 
     console.log("cookies onload: ", cookies);
 
