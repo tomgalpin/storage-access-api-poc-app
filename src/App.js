@@ -1,6 +1,6 @@
 /* eslint-disable no-script-url */
 import React, { useEffect, useState } from "react";
-import { setCookie, getCookie } from "./utils";
+import { setCookie } from "./utils";
 import { S } from "./styled";
 
 function App() {
@@ -52,9 +52,7 @@ function App() {
 
   useEffect(() => {
     const cookies = document.cookie;
-    const testCookie = getCookie();
 
-    console.log("test cookie: ", testCookie);
     console.log("cookies onload: ", cookies);
 
     if (cookies.length > 0) {
