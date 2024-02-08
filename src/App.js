@@ -13,11 +13,14 @@ function App() {
     document.hasStorageAccess().then(
       function (hasAccess) {
         console.log(13, hasAccess);
+
         setHasCookieAccess(true);
       },
       function (failureReason) {
         console.log(16, failureReason);
+
         setHasCookieAccess(false);
+        setErrorMsg(failureReason);
       }
     );
   };
@@ -42,9 +45,11 @@ function App() {
 
   const onSubmitCookie = (event) => {
     event.preventDefault();
-    console.log(45, event.target.value);
+
     checkForStorageAccess();
     makeStorageAccessRequest();
+
+    event.target.reset();
   };
 
   useEffect(() => {
