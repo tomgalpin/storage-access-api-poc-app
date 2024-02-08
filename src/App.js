@@ -1,5 +1,5 @@
 /* eslint-disable no-script-url */
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { setCookie } from "./utils";
 import { S } from "./styled";
 
@@ -44,7 +44,7 @@ function App() {
     event.target.reset();
   };
 
-  const handleCookieAccess = async () => {
+  const handleCookieAccess = useCallback(async () => {
     // Adapted from:  https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API/Using
 
     console.log(
@@ -101,7 +101,7 @@ function App() {
         }
       }
     }
-  };
+  }, [cookieValue]);
 
   useEffect(() => {
     const cookies = document.cookie;
@@ -115,7 +115,7 @@ function App() {
     if (cookies.length > 0) {
       setCurrentCookies(cookies);
     }
-  }, []);
+  }, [handleCookieAccess]);
 
   return (
     <div className="App">
