@@ -144,7 +144,7 @@ function App() {
             />
             <S.Button
               type="submit"
-              disabled={!hasCookieAccess || cookieValue.length < 1}
+              disabled={!hasCookieAccess && cookieValue.length < 1}
             >
               Set Cookie in Browser
             </S.Button>
