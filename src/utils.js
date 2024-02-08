@@ -2,6 +2,14 @@ export const setCookie = (cookieValue) => {
   const cookieName = "test-cookie-value";
   const date = new Date();
 
+  console.log(5, cookieName);
+  console.log(6, cookieValue);
+  console.log(7, date.toUTCString());
+  console.log(
+    8,
+    `${cookieName}=${cookieValue}; expires=${date.toUTCString()}; path=/`
+  );
+
   date.setTime(`${date.getTime()}${30 * 24 * 60 * 60 * 1000}`);
 
   document.cookie = `${cookieName}=${cookieValue}; expires=${date.toUTCString()}; path=/`;

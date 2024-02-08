@@ -1,6 +1,6 @@
 /* eslint-disable no-script-url */
 import React, { useEffect, useState } from "react";
-import { getCookie, setCookie } from "./utils";
+import { setCookie } from "./utils";
 import { S } from "./styled";
 
 function App() {
@@ -11,12 +11,13 @@ function App() {
   const checkForStorageAccess = () => {
     document.hasStorageAccess().then(
       function (hasAccess) {
-        console.log(13, hasAccess);
+        // Boolean hasAccess says whether the document has access or not.
+        console.log("hasAccess: ", hasAccess);
 
         setHasCookieAccess(true);
       },
       function (failureReason) {
-        console.log(16, failureReason);
+        console.log("failureReason: ", failureReason);
 
         setHasCookieAccess(false);
       }
@@ -28,9 +29,7 @@ function App() {
       function () {
         console.log("storage access granted");
 
-        console.log(31, cookieValue);
-
-        if (cookieValue && cookieValue.length >= 1) {
+        if (cookieValue.length >= 1) {
           setCookie(cookieValue);
           setCurrentCookies(document.cookie);
         }
@@ -53,9 +52,10 @@ function App() {
   };
 
   useEffect(() => {
-    const testCookie = getCookie();
+    var isCookieEnabled = navigator.cookieEnabled;
     const cookies = document.cookie;
-    console.log("test cookie: ", testCookie);
+
+    console.log("are cookies enabled: ", isCookieEnabled);
     console.log("cookies onload: ", cookies);
 
     if (cookies.length > 0) {
