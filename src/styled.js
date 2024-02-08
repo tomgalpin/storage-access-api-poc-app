@@ -26,7 +26,7 @@ export const S = {
   ErrorMsg: styled.div`
     width: 80%;
     padding: 5px 10px 8px 5px;
-    background: rgba(216, 0, 12, 0.6);
+    background: rgba(254, 239, 179, 0.8);
     border-radius: 5px;
     text-align: center;
     margin: 0 auto 20px auto;

@@ -26,6 +26,7 @@ function App() {
       // Need to call requestStorageAccess() after a user interaction
       try {
         await document.requestStorageAccess();
+
         setCookie(cookieValue);
         setCurrentCookies(document.cookie);
 
@@ -128,7 +129,10 @@ function App() {
           </S.P>
           {hasError && (
             <S.ErrorMsg>
-              <S.P>You or your browser have disabled cookies!</S.P>
+              <S.P>
+                Your browser disabled cookies or will require your permission to
+                set.
+              </S.P>
             </S.ErrorMsg>
           )}
           {currentCookies && currentCookies.length > 0 && (
