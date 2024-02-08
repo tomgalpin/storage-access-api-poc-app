@@ -4,7 +4,7 @@ import { setCookie } from "./utils";
 import { S } from "./styled";
 
 function App() {
-  const [cookieName, setCookieName] = useState("");
+  const [cookieValue, setCookieValue] = useState("");
   const [currentCookies, setCurrentCookies] = useState("");
   const [hasCookieAccess, setHasCookieAccess] = useState(false);
 
@@ -28,8 +28,10 @@ function App() {
       function () {
         console.log("storage access granted");
 
-        if (cookieName && cookieName.length >= 1) {
-          setCookie(cookieName);
+        console.log(31, cookieValue);
+
+        if (cookieValue && cookieValue.length >= 1) {
+          setCookie(cookieValue);
           setCurrentCookies(document.cookie);
         }
       },
@@ -66,9 +68,9 @@ function App() {
         <S.Container>
           <S.H1>Storage Access API POC</S.H1>
           <S.P>
-            <strong>About:</strong> This POC demonstrates how different browsers
-            prompt a user for Storage Access consent when a cookie is set in an
-            embedded, cross-site iframe.
+            This POC demonstrates how different browsers prompt a user for
+            Storage Access consent when a cookie is set using the Storage Access
+            API, in an embedded, cross-site iframe.
           </S.P>
           {currentCookies && currentCookies.length > 0 && (
             <S.CookieMsg>
@@ -81,12 +83,13 @@ function App() {
             <S.TextInput
               type="text"
               name="cookieName"
+              value={cookieValue}
               placeholder="Cookie Name"
-              onChange={(event) => setCookieName(event.target.value)}
+              onChange={(event) => setCookieValue(event.target.value)}
             />
             <S.Button
               type="submit"
-              disabled={!hasCookieAccess && cookieName.length < 1}
+              disabled={!hasCookieAccess && cookieValue.length < 1}
             >
               Set Cookie in Browser
             </S.Button>

@@ -20,6 +20,8 @@ export const S = {
   `,
   P: styled.p`
     color: #000;
+    font-size: 16px;
+    line-height: 25px;
   `,
   CookieMsg: styled.div`
     width: 80%;
