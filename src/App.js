@@ -1,6 +1,6 @@
 /* eslint-disable no-script-url */
 import React, { useEffect, useState } from "react";
-import { setCookie } from "./utils";
+import { getCookie, setCookie } from "./utils";
 import { S } from "./styled";
 
 function App() {
@@ -53,8 +53,9 @@ function App() {
   };
 
   useEffect(() => {
+    const testCookie = getCookie();
     const cookies = document.cookie;
-
+    console.log("test cookie: ", testCookie);
     console.log("cookies onload: ", cookies);
 
     if (cookies.length > 0) {
@@ -83,7 +84,6 @@ function App() {
             <S.TextInput
               type="text"
               name="cookieName"
-              value={cookieValue}
               placeholder="Cookie Name"
               onChange={(event) => setCookieValue(event.target.value)}
             />
