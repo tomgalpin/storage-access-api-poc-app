@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { setCookie } from "./utils";
 import { S } from "./styled";
 
@@ -9,21 +9,14 @@ function App() {
   const [errorMsg, setErrorMsg] = useState();
 
   const checkForStorageAccess = () => {
-    const isCookieEnabled = navigator.cookieEnabled;
-
-    console.log(10, isCookieEnabled);
-
-    if (!isCookieEnabled) {
-      setErrorMsg("Cookies are not enabled for this site.");
-      return;
-    }
-
     document.hasStorageAccess().then(
       function (hasAccess) {
         console.log(13, hasAccess);
+        setHasCookieAccess(true);
       },
       function (failureReason) {
         console.log(16, failureReason);
+        setHasCookieAccess(false);
       }
     );
   };
@@ -36,6 +29,17 @@ function App() {
       setIsCookiePlaced(true);
     }
   };
+
+  useEffect(() => {
+    const isCookieEnabled = navigator.cookieEnabled;
+
+    console.log(10, isCookieEnabled);
+
+    if (!isCookieEnabled) {
+      setErrorMsg("Cookies are not enabled for this browser.");
+      return;
+    }
+  }, []);
 
   return (
     <div className="App">
