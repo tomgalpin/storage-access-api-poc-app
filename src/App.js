@@ -43,7 +43,7 @@ function App() {
 
     console.log(
       "browser: hasStorageAccess: ",
-      document.hasStorageAccess ? "true" : "false"
+      document.hasStorageAccess ? true : false
     );
     console.log("browser: cookieEnabled: ", navigator.cookieEnabled);
 
