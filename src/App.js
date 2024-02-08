@@ -94,14 +94,12 @@ function App() {
         } catch (error) {
           console.log("Storage Access query not available.");
 
-          setCookie(cookieValue);
-
           setHasCookieAccess(false);
           setHasError(true);
         }
       }
     }
-  }, [cookieValue]);
+  }, []);
 
   useEffect(() => {
     const cookies = document.cookie;
