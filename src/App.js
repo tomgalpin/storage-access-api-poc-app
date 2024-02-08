@@ -6,7 +6,6 @@ import { S } from "./styled";
 function App() {
   const [cookieName, setCookieName] = useState("");
   const [currentCookies, setCurrentCookies] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
   const [hasCookieAccess, setHasCookieAccess] = useState(false);
 
   const checkForStorageAccess = () => {
@@ -20,7 +19,6 @@ function App() {
         console.log(16, failureReason);
 
         setHasCookieAccess(false);
-        setErrorMsg(failureReason);
       }
     );
   };
@@ -54,11 +52,6 @@ function App() {
 
   useEffect(() => {
     const cookies = document.cookie;
-    const isCookieEnabled = navigator.cookieEnabled;
-
-    if (!isCookieEnabled) {
-      setErrorMsg("Cookies are not enabled for this browser.");
-    }
 
     if (cookies.length > 0) {
       setCurrentCookies(cookies);
@@ -75,11 +68,6 @@ function App() {
             prompt a user for Storage Access consent when a cookie is set in an
             embedded, cross-site iframe.
           </S.P>
-          {errorMsg && errorMsg.length > 0 && (
-            <S.ErrorMsg>
-              <S.P>{errorMsg}</S.P>
-            </S.ErrorMsg>
-          )}
           {currentCookies && currentCookies.length > 0 && (
             <S.CookieMsg>
               <S.P>
