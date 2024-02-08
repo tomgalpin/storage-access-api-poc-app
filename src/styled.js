@@ -34,7 +34,20 @@ export const S = {
       margin: 5px;
     }
   `,
-  Box: styled.div`
+  CookieMsg: styled.div`
+    width: 80%;
+    padding: 5px 10px 8px 5px;
+    background: #42b883;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto 20px auto;
+
+    p {
+      font-size: 12px;
+      margin: 5px;
+    }
+  `,
+  Form: styled.form`
     display: flex;
     flex-direction: column;
   `,

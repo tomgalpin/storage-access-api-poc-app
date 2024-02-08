@@ -1,12 +1,13 @@
+/* eslint-disable no-script-url */
 import React, { useEffect, useState } from "react";
 import { setCookie } from "./utils";
 import { S } from "./styled";
 
 function App() {
   const [cookieName, setCookieName] = useState("");
-  const [isCookiePlaced, setIsCookiePlaced] = useState(false);
+  const [currentCookies, setCurrentCookies] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const [hasCookieAccess, setHasCookieAccess] = useState(false);
-  const [errorMsg, setErrorMsg] = useState();
 
   const checkForStorageAccess = () => {
     document.hasStorageAccess().then(
@@ -21,23 +22,41 @@ function App() {
     );
   };
 
-  const onSubmitCookie = () => {
-    checkForStorageAccess();
+  const makeStorageAccessRequest = () => {
+    document.requestStorageAccess().then(
+      function () {
+        // Storage access was granted.
+        console.log("storage access granted");
 
-    if (cookieName && cookieName.length >= 1) {
-      setCookie(cookieName);
-      setIsCookiePlaced(true);
-    }
+        if (cookieName && cookieName.length >= 1) {
+          setCookie(cookieName);
+          setCurrentCookies(document.cookie);
+        }
+      },
+      function () {
+        // Storage access was denied.
+        console.log("storage access denied");
+      }
+    );
+  };
+
+  const onSubmitCookie = (event) => {
+    event.preventDefault();
+    console.log(45, event.target.value);
+    checkForStorageAccess();
+    makeStorageAccessRequest();
   };
 
   useEffect(() => {
+    const cookies = document.cookie;
     const isCookieEnabled = navigator.cookieEnabled;
-
-    console.log(10, isCookieEnabled);
 
     if (!isCookieEnabled) {
       setErrorMsg("Cookies are not enabled for this browser.");
-      return;
+    }
+
+    if (cookies.length > 0) {
+      setCurrentCookies(cookies);
     }
   }, []);
 
@@ -56,22 +75,27 @@ function App() {
               <S.P>{errorMsg}</S.P>
             </S.ErrorMsg>
           )}
-          <S.Box>
+          {currentCookies && currentCookies.length > 0 && (
+            <S.CookieMsg>
+              <S.P>
+                <strong>Current cookies:</strong> {currentCookies}
+              </S.P>
+            </S.CookieMsg>
+          )}
+          <S.Form action="" onSubmit={(event) => onSubmitCookie(event)}>
             <S.TextInput
               type="text"
               name="cookieName"
               placeholder="Cookie Name"
               onChange={(event) => setCookieName(event.target.value)}
             />
-            <S.Button onClick={onSubmitCookie} disabled={cookieName.length < 1}>
+            <S.Button
+              type="submit"
+              disabled={!hasCookieAccess && cookieName.length < 1}
+            >
               Set Cookie in Browser
             </S.Button>
-          </S.Box>
-          {isCookiePlaced && (
-            <S.P>
-              Cookie Name set as: <span>{cookieName}</span>
-            </S.P>
-          )}
+          </S.Form>
         </S.Container>
       </S.Page>
     </div>
