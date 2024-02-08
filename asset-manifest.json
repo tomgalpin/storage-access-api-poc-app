@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/storage-access-api-poc-app/static/css/main.93a0497a.css",
-    "main.js": "/storage-access-api-poc-app/static/js/main.e437d3df.js",
+    "main.js": "/storage-access-api-poc-app/static/js/main.9f3f0de4.js",
     "index.html": "/storage-access-api-poc-app/index.html",
     "main.93a0497a.css.map": "/storage-access-api-poc-app/static/css/main.93a0497a.css.map",
-    "main.e437d3df.js.map": "/storage-access-api-poc-app/static/js/main.e437d3df.js.map"
+    "main.9f3f0de4.js.map": "/storage-access-api-poc-app/static/js/main.9f3f0de4.js.map"
   },
   "entrypoints": [
     "static/css/main.93a0497a.css",
-    "static/js/main.e437d3df.js"
+    "static/js/main.9f3f0de4.js"
   ]
 }
